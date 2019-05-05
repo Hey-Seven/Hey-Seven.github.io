@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="准备知识DNS 服务器记录类型默认 dig rss.newyingyong.cn 返回的是 A 记录类型，其他类型还包括 MX、NS、SOA 等，我们可以使用 dig -t a/mx/soa/mx+域名 进行查询。1.A记录 A（Address）记录是用来指定主机名（或域名）对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置域名的子域名。通俗来说A">
+<meta name="description" content="准备知识DNS 服务器记录类型默认 dig rss.newyingyong.cn 返回的是 A 记录类型，其他类型还包括 MX、NS、SOA 等，我们可以使用 dig -t a/mx/soa/mx+域名 进行查询。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kali之DNS收集分析">
 <meta property="og:url" content="http://yoursite.com/2019/03/25/kali之DNS收集分析/index.html">
 <meta property="og:site_name" content="Seven">
-<meta property="og:description" content="准备知识DNS 服务器记录类型默认 dig rss.newyingyong.cn 返回的是 A 记录类型，其他类型还包括 MX、NS、SOA 等，我们可以使用 dig -t a/mx/soa/mx+域名 进行查询。1.A记录 A（Address）记录是用来指定主机名（或域名）对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置域名的子域名。通俗来说A">
+<meta property="og:description" content="准备知识DNS 服务器记录类型默认 dig rss.newyingyong.cn 返回的是 A 记录类型，其他类型还包括 MX、NS、SOA 等，我们可以使用 dig -t a/mx/soa/mx+域名 进行查询。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-05T04:55:57.732Z">
+<meta property="og:updated_time" content="2019-05-05T04:58:21.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kali之DNS收集分析">
-<meta name="twitter:description" content="准备知识DNS 服务器记录类型默认 dig rss.newyingyong.cn 返回的是 A 记录类型，其他类型还包括 MX、NS、SOA 等，我们可以使用 dig -t a/mx/soa/mx+域名 进行查询。1.A记录 A（Address）记录是用来指定主机名（或域名）对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置域名的子域名。通俗来说A">
+<meta name="twitter:description" content="准备知识DNS 服务器记录类型默认 dig rss.newyingyong.cn 返回的是 A 记录类型，其他类型还包括 MX、NS、SOA 等，我们可以使用 dig -t a/mx/soa/mx+域名 进行查询。">
 
 
 
@@ -329,14 +329,11 @@
       
 
       
-        <h3 id="准备知识"><a href="#准备知识" class="headerlink" title="准备知识"></a><strong>准备知识</strong></h3><p>DNS 服务器记录类型<br>默认 dig rss.newyingyong.cn 返回的是 A 记录类型，其他类型还包括 MX、NS、SOA 等，我们可以使用 dig -t a/mx/soa/mx+域名 进行查询。<br>1.A记录 A（Address）记录是用来指定主机名（或域名）对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置域名的子域名。通俗来说A记录就是服务器的IP,域名绑定A记录就是告诉DNS,当你输入域名的时候给你引导向设置在DNS的A记录所对应的服务器。 简单的说，A记录是指定域名对应的IP地址。 </p>
+        <h3 id="准备知识"><a href="#准备知识" class="headerlink" title="准备知识"></a><strong>准备知识</strong></h3><p>DNS 服务器记录类型<br>默认 dig rss.newyingyong.cn 返回的是 A 记录类型，其他类型还包括 MX、NS、SOA 等，我们可以使用 dig -t a/mx/soa/mx+域名 进行查询。<br><a id="more"></a><br>1.A记录 A（Address）记录是用来指定主机名（或域名）对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置域名的子域名。通俗来说A记录就是服务器的IP,域名绑定A记录就是告诉DNS,当你输入域名的时候给你引导向设置在DNS的A记录所对应的服务器。 简单的说，A记录是指定域名对应的IP地址。 </p>
 <ol start="2">
 <li>NS记录 NS（Name Server）记录是域名服务器记录，用来指定该域名由哪个DNS服务器来进行解析。 您注册域名时，总有默认的DNS服务器，每个注册的域名都是由一个DNS域名服务器来进行解析的，DNS服务器NS记录地址一般以以下的形式出现： ns1.domain.com、ns2.domain.com等。 简单的说，NS记录是指定由哪个DNS服务器解析你的域名。 （注：只有一级域名（或者顶级域名）才有 NS 记录，通过 FQDN 是查询不出 NS 信息的）</li>
-<li>MX记录 MX（Mail Exchanger）记录是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。例如，当Internet上的某用户要发一封信给 <a href="mailto:user@mydomain.com" target="_blank" rel="noopener">user@mydomain.com</a> 时，该用户的邮件系统通过DNS查找mydomain.com这个域名的MX记录，如果MX记录存在， 用户计算机就将邮件发送到MX记录所指定的邮件服务器上。</li>
+<li>MX记录 MX（Mail Exchanger）记录是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。例如，当Internet上的某用户要发一封信给 <a href="mailto:user@mydomain.com" target="_blank" rel="noopener">user@mydomain.com</a> 时，该用户的邮件系统通过DNS查找mydomain.com这个域名的MX记录，如果MX记录存在， 用户计算机就将邮件发送到MX记录所指定的邮件服务器上。<br><strong>CNAME （别名记录）的存在原因：</strong><br> • 某个域名（A）可能会下线，但是这些域名可能还是被访问到，为了避免不友好的提示，可以将这个域名 cname 到另外个域名（B），这样访问 B 相当于返回 A。<br> • 很多公司项目可能有很多个域名，但是指定的 IP 地址可能每几个，一旦 IP 地址变化，可能要修改每个域名的 DNS 信息。假如这些域名 cname 到某个特定的域名，那么修改域名信息的时候就会非常方便。<br><strong>顶级、二级、三级域名的区别</strong><br>一个完整的域名由二个或二个以上部分组成，各部分之间用英文的句号”.”来分隔，最后一个”.”的右边部分称为顶级域名（TLD，也称为一级域名），最后一个”.”的左边部分称为二级域名（SLD），二级域名的左边部分称为三级域名，以此类推，每一级的域名控制它下一级域名的分配。<br><strong>域名的构成</strong><br>顶级域名：一个域名由两个以上的词段构成，最右边的就是顶级域名。<br>目前，国际上出现的顶级域名有.com,.net,.org,.gov,.edu,.mil,.cc,.to,.tv以及国家或地区的代码，其中最通用的是.com,.net,.org<br>.COM - -适用于商业实体，它是最流行的顶级域名，任何人都可注册一个.com域名。<br>.NET - -最初用于网络机构如ISP，今天，任何一个人都可注册一个.net域名。<br>.ORG —设计是用于各类组织机构，包括非盈利团体，今天，任何一个人都可注册一个.org域名。 国家代码：像cn（中国）,fr（法国）和au（澳大利亚）这样两个字母的域名谓之国家代码顶级域名（ccTLDs）,通过ccTLDs，基本上可以辨明域名持有者的国家或地区。详细的国家代码可在<a href="http://www.icann.org查找。" target="_blank" rel="noopener">www.icann.org查找。</a><br>二级域名：靠左边的部分就是所谓的二级域名，在cctv.com中，cctv就是顶级域名.com下的二级域名，cctv.com还可以有mail.cctv.com的形式，这里的mail可以谓之”主机”或”子域名”。</li>
 </ol>
-<p><strong>CNAME （别名记录）的存在原因：</strong><br>    • 某个域名（A）可能会下线，但是这些域名可能还是被访问到，为了避免不友好的提示，可以将这个域名 cname 到另外个域名（B），这样访问 B 相当于返回 A。<br>    • 很多公司项目可能有很多个域名，但是指定的 IP 地址可能每几个，一旦 IP 地址变化，可能要修改每个域名的 DNS 信息。假如这些域名 cname 到某个特定的域名，那么修改域名信息的时候就会非常方便。</p>
-<p><strong>顶级、二级、三级域名的区别</strong><br>一个完整的域名由二个或二个以上部分组成，各部分之间用英文的句号”.”来分隔，最后一个”.”的右边部分称为顶级域名（TLD，也称为一级域名），最后一个”.”的左边部分称为二级域名（SLD），二级域名的左边部分称为三级域名，以此类推，每一级的域名控制它下一级域名的分配。</p>
-<p><strong>域名的构成</strong><br>顶级域名：一个域名由两个以上的词段构成，最右边的就是顶级域名。<br>目前，国际上出现的顶级域名有.com,.net,.org,.gov,.edu,.mil,.cc,.to,.tv以及国家或地区的代码，其中最通用的是.com,.net,.org<br>.COM - -适用于商业实体，它是最流行的顶级域名，任何人都可注册一个.com域名。<br>.NET - -最初用于网络机构如ISP，今天，任何一个人都可注册一个.net域名。<br>.ORG —设计是用于各类组织机构，包括非盈利团体，今天，任何一个人都可注册一个.org域名。 国家代码：像cn（中国）,fr（法国）和au（澳大利亚）这样两个字母的域名谓之国家代码顶级域名（ccTLDs）,通过ccTLDs，基本上可以辨明域名持有者的国家或地区。详细的国家代码可在<a href="http://www.icann.org查找。" target="_blank" rel="noopener">www.icann.org查找。</a><br>二级域名：靠左边的部分就是所谓的二级域名，在cctv.com中，cctv就是顶级域名.com下的二级域名，cctv.com还可以有mail.cctv.com的形式，这里的mail可以谓之”主机”或”子域名”。</p>
 <p><strong>一. Dnsdict6[options][domain][字典]</strong><br><strong>二.dnsmap+地址+选项参数</strong>     </p>
 <pre><code>1. -w 后加字典文件
 2. -r 指定结果用常规格式输出文件
