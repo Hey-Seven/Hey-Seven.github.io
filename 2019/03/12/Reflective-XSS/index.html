@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="定义XSS(Cross Site Scripting)，即跨站脚本攻击。是指页面在加载并且渲染绘制的过程中，加载并执行了意料之外的代码。 危害1、可以通过document.cookie盗取cookie，劫持账户(最常见)2、流量劫持3、dos攻击，利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。并且通过携带过程的 cookie信息可以使服务端返回400开头的状态码，从">
+<meta name="description" content="定义XSS(Cross Site Scripting)，即跨站脚本攻击。是指页面在加载并且渲染绘制的过程中，加载并执行了意料之外的代码。 危害1、可以通过document.cookie盗取cookie，劫持账户(最常见)2、流量劫持">
 <meta name="keywords" content="反射型xss">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨站脚本攻击XSS">
 <meta property="og:url" content="http://yoursite.com/2019/03/12/Reflective-XSS/index.html">
 <meta property="og:site_name" content="Seven">
-<meta property="og:description" content="定义XSS(Cross Site Scripting)，即跨站脚本攻击。是指页面在加载并且渲染绘制的过程中，加载并执行了意料之外的代码。 危害1、可以通过document.cookie盗取cookie，劫持账户(最常见)2、流量劫持3、dos攻击，利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。并且通过携带过程的 cookie信息可以使服务端返回400开头的状态码，从">
+<meta property="og:description" content="定义XSS(Cross Site Scripting)，即跨站脚本攻击。是指页面在加载并且渲染绘制的过程中，加载并执行了意料之外的代码。 危害1、可以通过document.cookie盗取cookie，劫持账户(最常见)2、流量劫持">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-08T07:30:05.725Z">
+<meta property="og:updated_time" content="2019-05-08T08:45:24.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨站脚本攻击XSS">
-<meta name="twitter:description" content="定义XSS(Cross Site Scripting)，即跨站脚本攻击。是指页面在加载并且渲染绘制的过程中，加载并执行了意料之外的代码。 危害1、可以通过document.cookie盗取cookie，劫持账户(最常见)2、流量劫持3、dos攻击，利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。并且通过携带过程的 cookie信息可以使服务端返回400开头的状态码，从">
+<meta name="twitter:description" content="定义XSS(Cross Site Scripting)，即跨站脚本攻击。是指页面在加载并且渲染绘制的过程中，加载并执行了意料之外的代码。 危害1、可以通过document.cookie盗取cookie，劫持账户(最常见)2、流量劫持">
 
 
 
@@ -353,9 +353,9 @@
 
       
         <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a><strong>定义</strong></h4><p>XSS(Cross Site Scripting)，即跨站脚本攻击。是指页面在加载并且渲染绘制的过程中，加载并执行了意料之外的代码。</p>
-<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a><strong>危害</strong></h4><p>1、可以通过document.cookie盗取cookie，劫持账户(最常见)<br>2、流量劫持<br>3、dos攻击，利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。并且通过携带过程的 cookie信息可以使服务端返回400开头的状态码，从而拒绝合理的请求服务。</p>
+<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a><strong>危害</strong></h4><p>1、可以通过document.cookie盗取cookie，劫持账户(最常见)<br>2、流量劫持<br><a id="more"></a><br>3、dos攻击，利用合理的客户端请求来占用过多的服务器资源，从而使合法用户无法得到服务器响应。并且通过携带过程的 cookie信息可以使服务端返回400开头的状态码，从而拒绝合理的请求服务。</p>
 <h4 id="防御方法"><a href="#防御方法" class="headerlink" title="防御方法"></a><strong>防御方法</strong></h4><p>1、针对输入点，对于输入内容的特定字符进行编码<br>2、对重要的cookie设置httponly，防止客户端通过document.cookie来读取cookie<br>3、不使用eval来解析并运行不确定的数据或者代码，对于json解析使用json.parse( )方法<br>4、后端对相应关键字过滤</p>
-<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a><strong>分类</strong></h4><p>反射型: 非持久性XSS攻击，简单地把用户输入的数据直接反射给浏览器。<br>存储型：持久型XSS攻击，攻击者把攻击代码永久存储在目标服务器上中<br>DOM 型：DOM型与前两者的差别是，只在客户端进行解析，不需要服务器的解析响应<br>本文主要讲解反射型XSS<br>首先注意观察找输出点是标签或者是标签中的属性（比如form表单里面的触发属性）<br>尝试去闭合引号<br>    <code>&lt;a href=&#39; &#39; onclick=alert(/xss/)// &#39;&gt;link&lt;/a&gt;</code><br>或者是整个标签<br><a id="more"></a><br>    <code>&lt;a href=&#39; &#39;&gt;&lt;img src=# onerror=alert(/xss/)/&gt;&lt;&#39; &#39;&gt;link&lt;/a&gt;</code><br> 之后再插入新的事件。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a><strong>分类</strong></h4><p>反射型: 非持久性XSS攻击，简单地把用户输入的数据直接反射给浏览器。<br>存储型：持久型XSS攻击，攻击者把攻击代码永久存储在目标服务器上中<br>DOM 型：DOM型与前两者的差别是，只在客户端进行解析，不需要服务器的解析响应<br>本文主要讲解反射型XSS<br>首先注意观察找输出点是标签或者是标签中的属性（比如form表单里面的触发属性）<br>尝试去闭合引号<br>    <code>&lt;a href=&#39; &#39; onclick=alert(/xss/)// &#39;&gt;link&lt;/a&gt;</code><br>或者是整个标签<br>    <code>&lt;a href=&#39; &#39;&gt;&lt;img src=# onerror=alert(/xss/)/&gt;&lt;&#39; &#39;&gt;link&lt;/a&gt;</code><br> 之后再插入新的事件。</p>
 <h4 id="下面是几个主要的弹框样本"><a href="#下面是几个主要的弹框样本" class="headerlink" title="下面是几个主要的弹框样本"></a><strong>下面是几个主要的弹框样本</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. &lt;script&gt;alert(/XSS/)&lt;/script&gt;</span><br><span class="line">2.  onxxxx=alert(/XSS/)</span><br><span class="line">  这是html事件属性，可以用于各种html元素中，根据触发条件不 同，生效操作不同</span><br><span class="line">3. &lt;div style=&quot;color: expression(alert(/XSS/))&quot;&gt;</span><br><span class="line">4. &lt;img src=&quot;javascript:alert(/XSS/);&quot;&gt;</span><br><span class="line">  &lt;img src=javascript:alert(/XSS/)&gt;(没有分号和引号)</span><br><span class="line">  (IE7.0 不支持在图片上下文中使用JavaScript 命令)</span><br><span class="line">5.  &lt;a href=&quot;javascript:alert(/XSS/)&quot;&gt;/XSS/&lt;/a&gt;</span><br><span class="line">  (超链接闭合，在点击链接之后生效)</span><br></pre></td></tr></table></figure>
 <h4 id="过滤绕过"><a href="#过滤绕过" class="headerlink" title="过滤绕过"></a><strong>过滤绕过</strong></h4><p>1.html实体绕过，分号未被过滤的情况<br>根据相应过滤字符的不同，查找html特殊字符实体对照表来构造payload<br>html特殊字符编码，即转义字符串（Escape Sequence），即字符实体分成三部分：<br>                 第一部分是一个&amp;符号，英文叫ampersand；<br>                 第二部分是实体（Entity）名字或者是#加上实体（Entity）编号；<br>                 第三部分是一个分号<br>比如，要显示小于号（&lt;），就可以写<code>&amp;lt;</code>  或者<code>&amp;#60;</code><br>当然，对于一些过滤器会过滤实体，但是还有不带分号的十进制实体以及十六进制实体   可以尝试</p>
 <ol start="2">
@@ -494,7 +494,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -505,7 +505,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
